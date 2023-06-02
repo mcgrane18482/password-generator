@@ -9,7 +9,7 @@ var combinedChars = [lowercase.concat(uppercase).concat(numbers).concat(specialC
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-function getUserInput() {
+function promptUser() {
   var amount = parseInt(prompt('Please provide an amount of characters between 8 and 128'));
   var includeLowercase = confirm('Would you like to include lowercase letters?');
   var includeUppercase = confirm('Would you like to include uppercase letters?');
@@ -20,10 +20,10 @@ function getUserInput() {
 }
 
 function generatePassword(){
-  var choices = getUserInput();
+  var choices = promptUser();
   var pass = '';
   var combinedChars = [];
-  
+    // Generate a new array that includes all of the character types the user selected 
     var includeLowercase = choices[1];
     var includeUppercase = choices[2];
     var includeNumbers = choices[3];
@@ -32,16 +32,17 @@ function generatePassword(){
     if (includeLowercase === true) {
         combinedChars = combinedChars.concat(lowercase)
     }
-    if (includeUppercase) {
+    if (includeUppercase === true) {
         combinedChars = combinedChars.concat(uppercase)
     }
-    if (includeNumbers) {
+    if (includeNumbers === true) {
         combinedChars = combinedChars.concat(numbers)
     }
-    if (includeSpecial) {
+    if (includeSpecial === true ) {
         combinedChars = combinedChars.concat(specialCharacters)
     }
-
+    // Go through that array and pull a random character out 
+    // add the random character to the pass string
     for (count = 0; count < choices[0]; count++) {
         var randomIndex = Math.floor(Math.random() * combinedChars.length);
         randomChar = combinedChars[randomIndex];
@@ -52,6 +53,7 @@ function generatePassword(){
 
 // Write password to the #password input
 function writePassword() {
+  // Create a function called generatePassword the result of which will be stored in 'password'
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
